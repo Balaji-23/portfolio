@@ -1,32 +1,76 @@
 import React from 'react'
 import './hero.css'
-import award1 from '../../assets/award1.png'
-import award2 from '../../assets/award2.png'
-import award3 from '../../assets/award3.png'
+// import award1 from '../../assets/award1.png'
+// import award2 from '../../assets/award2.png'
+// import award3 from '../../assets/award3.png'
 import instagram from '../../assets/instagram.png'
 import facebook from '../../assets/facebook.png'
 import linkedin from '../../assets/linkedin.png'
+import original from '../../assets/original.png'
+import react from '../../assets/react.png'
+import express from '../../assets/express.png'
+import mysql from '../../assets/mysql.png'
 // import certificate from '../../assets/certificate.png'
 import Speech from './Speech'
+import { motion, stagger} from "motion/react"
+
+
+const awardvariants={
+  initial:{
+    x:-100,
+    opacity:0
+  },
+   animate:{
+    x:0,
+    opacity:1
+  },
+  transition:{
+    duration:2,
+    staggerChildren:0.2
+  }
+}
+const followvariants={
+  initial:{
+    y:-100,
+    opacity:0
+  },
+   animate:{
+    y:0,
+    opacity:1
+  },
+  transition:{
+    duration:2,
+    staggerChildren:0.2
+  }
+}
+
+
 const Hero = () => {
   return (
     <div className='hero'>
       {/* Section Left*/}
       <div className='hsection left'>
         {/* title */}
-        <h1 className='title'>Hey There,<br /><span>I am Balaji P!</span></h1>
-        <div className='awards'>
-          <h3>Junior Web Developer</h3>
-          <small>at Datasolve Analytics Pvt. Ltd.</small>
-          <p>Building scalable web applications using React,Express.js,and MySQL. Responsible for developing dynamic UIs, efficient APIs,and managing databases. Experienced in deploying applications on Google Cloud Platform (Compute Engine & App Engine) to ensure high availability and performance.</p>
+        <motion.h1 className='title'
+         initial={{y:-100,opacity:0}} 
+         animate={{y:0,opacity:1}}
+         transition={{duration:1,ease:"easeOut"}}
+         >Hey There,<br /><span>I am Balaji P!</span></motion.h1>
+         {/* awards */}
+        <motion.div className='awards'variants={awardvariants} initial="initial" animate="animate">
+          <motion.h3 variants={awardvariants} >Junior Web Developer</motion.h3>
+          <motion.h3 variants={awardvariants} >at Datasolve Analytics Pvt. Ltd.</motion.h3>
+          <motion.p variants={awardvariants} >Building scalable web applications using React,Express.js,and MySQL. Responsible for developing dynamic UIs, efficient APIs,and managing databases. Experienced in deploying applications on Google Cloud Platform (Compute Engine & App Engine) to ensure high availability and performance.</motion.p>
           {/* awardslist */}
-          <div className='awardslist'>
-            <img className='' src={award1} />
-            <img className='' src={award2} />
-            <img className='' src={award3} />
-          </div>
+          <motion.div className='awardslist' variants={awardvariants}>
+            <motion.img className='' src={react}  variants={awardvariants}/>
+            <motion.img className='' src={express}  variants={awardvariants} />
+            <motion.img className='' src={mysql}  variants={awardvariants} />
+          </motion.div>
+          </motion.div>
           {/* scroll svg */}
-          <a href='#services' className='scroll'>
+          <motion.a  animate={{y:[0,5],opacity:[0,1,0]}}  transition={{repeat:Infinity,duration:4,ease:"easeInOut"}}
+          href='#services' className='scroll'>
             <svg
               width="50px"
               height="50px"
@@ -39,24 +83,24 @@ const Hero = () => {
                 stroke="white"
                 strokeWidth="1"
               />
-              <path d="M12 5V8" stroke='white' strokeWidth="1" strokeLinecap='round' />
+              <motion.path animate={{y:[0,5]}} transition={{repeat:Infinity,ease:"easeInOut",duration:4}} d="M12 5V8" stroke='white' strokeWidth="1" strokeLinecap='round' />
             </svg>
-          </a>
-        </div>
+          </motion.a>
+       
       </div>
       {/* Section Right*/}
       <div className='hsection right'>
         {/* follow*/}
-        <div className='follow'>
-          <a href='#instagram'><img className='' alt="instagram" src={instagram} /></a>
-          <a href='#facebook'><img className='' alt="facebook" src={facebook} /></a>
-          <a href='www.linkedin.com/in/balajip23' target='blank'><img className='' alt="linkedin" src={linkedin} /></a>
-          <div className='followtextcontainer'>
-            <div className='followtext'>
-<p>Follow me</p>
-            </div>
-          </div>
-        </div>
+        <motion.div className='follow' initial="initial" animate='animate' variants={followvariants}>
+          <motion.a href='#instagram'><img className='' alt="instagram" src={instagram} variants={followvariants} /></motion.a>
+          <motion.a href='#facebook'><img className='' alt="facebook" src={facebook} variants={followvariants} /></motion.a>
+          <motion.a href='www.linkedin.com/in/balajip23' target='blank'><img className='' alt="linkedin" src={linkedin} variants={followvariants}/></motion.a>
+          <motion.div className='followtextcontainer' variants={followvariants}>
+            <motion.div className='followtext'>
+<motion.p>Follow me</motion.p>
+            </motion.div>
+          </motion.div>
+        </motion.div>
         {/* speech bubble*/}
         <Speech />
         {/* certificate*/}
@@ -65,8 +109,8 @@ const Hero = () => {
           <p className=''>Certified internship in <br />Junior web Developer</p>
         </div> */}
         {/* contactbutton*/}
-        <a href='#contact' className='contactlink'></a>
-        <div className='contactbutton'>
+        <motion.a href='#contact' className='contactlink' animate={{rotate:[0,360]}} transition={{duration:10,ease:"linear",repeat:Infinity}}>
+        <motion.div className='contactbutton'>
           <svg viewBox="0 0 200 200" width="150" height="150">
             <circle cx="100" cy="100" r="90" fill="pink" />
             <path
@@ -95,8 +139,14 @@ const Hero = () => {
                 <polyline points="9 6 18 6 18 15" />
               </svg>
         </div>
-        </div>
-      
+        </motion.div>
+        </motion.a>
+      </div>
+      <div className='bg'>
+        {/* 3D */}
+<div className='himg'>
+<img src={original} alt='hero'/>
+</div>
       </div>
     </div>
   )

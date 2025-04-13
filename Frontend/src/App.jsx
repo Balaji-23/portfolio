@@ -4,7 +4,7 @@ import Contact from './components/Contact/Contact'
 import Hero from './components/Hero/Hero'
 import Portfolio from './components/Portfolio/Portfolio'
 import Services from './components/services/Services'
-
+// import Test from './components/Test'
 function App() {
 
   return (
@@ -26,6 +26,7 @@ function App() {
     
  
     </div>
+    // <Test/>
   )
 }
 
